@@ -451,9 +451,15 @@
   tog.addEventListener('click',()=>links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
 
-  // reveal on scroll
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // reveal on scroll — scroll-based for reliability (never leaves content hidden)
+  const reveals=[...document.querySelectorAll('.reveal')];
+  const revealNow=()=>{const vh=innerHeight||document.documentElement.clientHeight;for(const el of reveals){if(el.classList.contains('in'))continue;const r=el.getBoundingClientRect();if(r.top<vh*0.92&&r.bottom>-40)el.classList.add('in');}};
+  revealNow();
+  addEventListener('scroll',revealNow,{passive:true});
+  addEventListener('resize',revealNow);
+  addEventListener('load',revealNow);
+  // ultimate safety: nothing stays invisible
+  setTimeout(()=>{const y=scrollY;reveals.forEach(el=>{const r=el.getBoundingClientRect();if(r.top+y<y+innerHeight*1.1)el.classList.add('in');});},1500);
 
   // count-up
   const counted=new WeakSet();
