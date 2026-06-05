@@ -146,9 +146,11 @@
   .mspec .v{font-size:26px;font-weight:800;letter-spacing:-.04em}
   .mspec .v small{font-size:15px;color:var(--mint);font-weight:700}
   .mspec .k{font-size:13px;color:rgba(255,255,255,.6);margin-top:3px;font-weight:600}
-  .mstage{position:relative;display:grid;place-items:center;min-height:420px}
-  .mstage .pedestal{position:absolute;bottom:8%;width:74%;height:60px;background:radial-gradient(ellipse at center,rgba(16,185,136,.25),transparent 70%);filter:blur(6px)}
-  .mstage video,.mstage img{position:relative;width:84%;max-width:420px;border-radius:22px;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+  .mstage{position:relative;display:flex;flex-direction:column;align-items:center;gap:16px}
+  .mshowcard{position:relative;width:100%;max-width:430px;background:radial-gradient(120% 90% at 50% 18%,#ffffff,#e9edf1 72%);border-radius:28px;padding:28px 28px 16px;box-shadow:0 30px 70px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.7)}
+  .mshowcard .mimg{position:relative;width:74%;max-width:300px;margin:0 auto;filter:drop-shadow(0 22px 34px rgba(0,0,0,.30))}
+  .mshowcard .cap{margin-top:6px;text-align:center;font-size:12.5px;font-weight:700;color:#5a636e;letter-spacing:.02em}
+  .mstage .mvid{width:100%;max-width:430px;border-radius:18px;box-shadow:0 18px 44px rgba(0,0,0,.5);background:#000;display:block}
   .mfloat{position:absolute;background:rgba(255,255,255,.07);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:10px 14px;font-weight:700;font-size:13.5px;display:flex;gap:9px;align-items:center;z-index:2}
   .mfloat .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(16,185,136,.25)}
   .mfloat.f1{top:14%;left:2%}
@@ -354,10 +356,13 @@
           </div>
         </div>
         <div class="mstage reveal" style="transition-delay:.1s">
-          <div class="pedestal"></div>
           <div class="mfloat f1"><span class="dot"></span>QR 주문</div>
           <div class="mfloat f2"><span class="dot"></span>30초 완성</div>
-          <video src="../assets/Prtiimal_3D_Fin.mp4" autoplay muted loop playsinline poster="../assets/MachineIntro.265c063d.png"></video>
+          <div class="mshowcard">
+            <img class="mimg" src="../assets/MachineIntro.265c063d.png" alt="Protimal 단백질 자판기 머신">
+            <div class="cap">Protimal Machine · 매장 설치형</div>
+          </div>
+          <video class="mvid" src="../assets/Prtiimal_3D_Fin.mp4" autoplay muted loop playsinline></video>
         </div>
       </div>
     </div>
